@@ -1,0 +1,1 @@
+nohup qr.refine 1t40_refine_001_complete.pdb quantum.method='--gfn 1 --gbsa h2o' engine_name=xtb mode=gtest g_scan="15 20 25 50" quantum.nproc=12 parallel.nproc=5 fast_interaction=true > 1t40_gtest.log 2>&1 &
