@@ -1,0 +1,170 @@
+Starting Q|R
+version:   v1.0-208-g2886d5-dirty  
+Running refinement
+   input {
+     xray_data {
+       file_name = None
+       labels = None
+       high_resolution = None
+       low_resolution = None
+       outliers_rejection = True
+       french_wilson_scale = True
+       french_wilson {
+         max_bins = 60
+         min_bin_size = 40
+       }
+       sigma_fobs_rejection_criterion = None
+       sigma_iobs_rejection_criterion = None
+       ignore_all_zeros = True
+       force_anomalous_flag_to_be_equal_to = None
+       convert_to_non_anomalous_if_ratio_pairs_lone_less_than_threshold = 0.5
+       r_free_flags {
+         file_name = None
+         label = None
+         test_flag_value = None
+         ignore_r_free_flags = False
+         disable_suitability_test = False
+         ignore_pdb_hexdigest = False
+         generate = False
+         fraction = 0.1
+         max_free = 2000
+         lattice_symmetry_max_delta = 5
+         use_lattice_symmetry = True
+         use_dataman_shells = False
+         n_shells = 20
+       }
+     }
+     pdb {
+       file_name = None
+     }
+     monomers {
+       file_name = None
+     }
+     maps {
+       map_file_name = None
+       d_min = None
+       map_coefficients_file_name = None
+       map_coefficients_label = None
+     }
+     sequence = None
+     scattering_table = wk1995 it1992 *n_gaussian neutron electron
+     wavelength = None
+     energy = None
+     twin_law = Auto
+   }
+   max_atoms = 20000
+   debug = False
+   cluster {
+     fast_interaction = true
+     charge_cutoff = 8.0
+     clustering = True
+     charge_embedding = False
+     two_buffers = false
+     maxnum_residues_in_cluster = 15
+     clustering_method = gnc *bcc
+     altloc_method = average *subtract
+     g_scan = 20 25 50 100
+     g_mode = None
+     save_clusters = True
+   }
+   restraints = cctbx *qm
+   expansion = False
+   quantum {
+     engine_name = mopac ani torchani terachem turbomole pyscf orca gaussian \
+                   *xtb
+     basis = Auto
+     charge = None
+     method = --gfn 1 --gbsa h2o
+     memory = None
+     nproc = 12
+     qm_addon = gcp dftd3 gcp-d3
+     qm_addon_method = None
+   }
+   refine {
+     dry_run = False
+     sf_algorithm = *direct fft
+     refinement_target_name = *ml ls_wunit_k1
+     mode = opt refine *gtest
+     number_of_macro_cycles = 1
+     number_of_weight_search_cycles = 50
+     number_of_refine_cycles = 5
+     number_of_micro_cycles = 50
+     data_weight = None
+     choose_best_use_r_work = False
+     skip_weight_search = False
+     adjust_restraints_weight_scale_value = 2
+     max_iterations_weight = 50
+     max_iterations_refine = 50
+     use_ase_lbfgs = False
+     line_search = True
+     stpmax = 0.2
+     gradient_only = False
+     update_all_scales = True
+     refine_sites = True
+     refine_adp = False
+     restraints_weight_scale = 1.0
+     shake_sites = False
+     use_convergence_test = True
+     max_bond_rmsd = 0.03
+     max_r_work_r_free_gap = 5.0
+     r_tolerance = 0.001
+     rmsd_tolerance = 0.01
+     opt_log = False
+     pre_opt = False
+     pre_opt_stpmax = 0.1
+     pre_opt_iter = 10
+     pre_opt_switch = 2
+     pre_opt_gconv = 3000
+   }
+   parallel {
+     method = *multiprocessing slurm pbs sge lsf threading
+     nproc = 5
+     qsub_command = None
+   }
+   output_file_name_prefix = None
+   output_folder_name = "pdb"
+   rst_file = None
+   dump_gradients = None
+ params.gradient_only True
+
+***********************************************************
+restart info will be stored in /home/linlinqiao/protein-ligand/1jla/1jla-1/pdb/1jla_CSD230A_to_CYS_refine_001_complete.rst.pickle
+***********************************************************
+
+Calculating   4 gradients 
+
+Starting loop over different fragment sizes
+loop for g_mode = 1 
+g_mode: 1 - 20
+~max cluster size  20
+Traceback (most recent call last):
+  File "/home/linlinqiao/phenix-dev-4176/build/../modules/qrefine/command_line/refine.py", line 148, in <module>
+    run(args=sys.argv[1:], log=log)
+  File "/home/linlinqiao/phenix-dev-4176/build/../modules/qrefine/command_line/refine.py", line 142, in run
+    log      = log)
+  File "/home/linlinqiao/phenix-dev-4176/modules/qrefine/qr.py", line 571, in run
+    crystal_symmetry = model.xray_structure.crystal_symmetry())
+  File "/home/linlinqiao/phenix-dev-4176/modules/qrefine/qr.py", line 346, in create_fragment_manager
+    save_clusters              = params.cluster.save_clusters)
+  File "/home/linlinqiao/phenix-dev-4176/modules/qrefine/fragment.py", line 102, in __init__
+    self.set_up_cluster_qm()
+  File "/home/linlinqiao/phenix-dev-4176/modules/qrefine/fragment.py", line 151, in set_up_cluster_qm
+    self.get_fragment_hierarchies_and_charges()
+  File "/home/linlinqiao/phenix-dev-4176/modules/qrefine/fragment.py", line 442, in get_fragment_hierarchies_and_charges
+    charge = charges_class(pdb_filename=str(i)+"_capping_tmp.pdb").get_total_charge()
+  File "/home/linlinqiao/phenix-dev-4176/modules/qrefine/charges.py", line 159, in get_total_charge
+    verbose=verbose,
+  File "/home/linlinqiao/phenix-dev-4176/modules/qrefine/utils/electrons.py", line 425, in run
+    model.process_input_model(make_restraints=True)
+  File "/home/linlinqiao/phenix-dev-4176/modules/cctbx_project/mmtbx/model/model.py", line 1485, in process_input_model
+    allow_missing_symmetry = True)
+  File "/home/linlinqiao/phenix-dev-4176/modules/cctbx_project/mmtbx/utils/__init__.py", line 1007, in process_pdb_files
+    allow_missing_symmetry   = allow_missing_symmetry)
+  File "/home/linlinqiao/phenix-dev-4176/modules/cctbx_project/mmtbx/utils/__init__.py", line 1092, in _process_pdb_file
+    raise Sorry(msg)
+Sorry: Fatal problems interpreting model file:
+  Number of atoms with unknown nonbonded energy type symbols: 1
+    Please edit the model file to resolve the problems and/or supply a
+    CIF file with matching restraint definitions, along with
+    apply_cif_modification and apply_cif_link parameter definitions
+    if necessary.
